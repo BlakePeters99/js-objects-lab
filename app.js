@@ -290,3 +290,162 @@ Solve Exercise 16 here:
 
 console.log("Exercise 16 Game: ", game);
 
+/*
+Exercise 17
+1. Arrange the Pokémon in `game.party` by their HP. The one with the highest HP should come first.
+2. You'll need to use the `.sort()` method. How does the compare function work in sorting numbers?
+
+Solve Exercise 17 here:
+*/
+
+console.log("Exercise 17.1 -  Presorted Party (by HP):", game.party);
+
+game.party.sort((a,b) => a.hp - b.hp);
+
+console.log("Exercise 17.2 -  Postsorted Party (by HP):", game.party);
+
+/*
+Exercise 18
+Add a new property to the `game` object called `collection` and initialize its value to an empty array.
+
+Copy the `catchPokemon` method you wrote in Exercise Twelve and paste it below. Modify it so that:
+  - Ensure that no more than six Pokemon can be in the party at any time. 
+    Excess Pokemon should be placed in the `game.collection` array.
+  - It's up to you how to distribute Pokemon in a situation where more than six 
+    would be placed into the `game.party` array.
+
+Again, for this exercise, it's okay to have a negative number of pokeballs.
+
+After updating the method, use it by calling it and passing in a pokemon object of your choice from the `pokemon` data to catch it.
+
+Also, log the `game.items` array to confirm that the pokeball quantity is being decremented.
+
+Solve Exercise 18 here:
+*/
+
+game.collection = [];
+
+function catchPokemon(newPokemon) {
+  if (game.party.length < 6) {
+    game.party.push(newPokemon);
+  }
+  else {
+    game.collection.push(newPokemon);
+  }
+  game.items[1].quantity--;
+}
+
+console.log("Exercise 18.1 - Expect 6:", game.items[1].quantity);
+
+catchPokemon(pokemon[149]);
+
+console.log("Exercise 18.2 - Expect 5: ", game.items[1].quantity);
+console.log("Exercise 18.3 - Expect Mewtwo: ", game.collection[0].name);
+
+/*
+Exercise 19
+Copy the `catchPokemon` method that you just wrote above, and paste it below. The time has come to make it so that we cannot catch a Pokemon when we do not have any pokeballs to catch it with. 
+
+Modify the method so that if there are no pokeballs a message will be displayed that there are not enough pokeballs to catch the desired Pokemon.
+
+Also, ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+Solve Exercise 19 here:
+*/
+
+function catchPokemon(newPokemon) {
+  // check if there are enough pokeballs
+  if (game.items[1].quantity <= 0) {
+    console.log("There are not enough pokeballs to catch the desired Pokemon");
+  }
+  // catch pokemon and sort it
+  else {
+    if (game.party.length < 6) {
+      game.party.push(newPokemon);
+    }
+    else {
+      game.collection.push(newPokemon);
+    }
+    game.items[1].quantity--;
+  }
+}
+
+console.log("Exercise 19.1 - Expect 5:", game.items[1].quantity);
+
+// The SPAM of diglets!!
+catchPokemon(pokemon[49]);
+catchPokemon(pokemon[49]);
+catchPokemon(pokemon[49]);
+catchPokemon(pokemon[49]);
+catchPokemon(pokemon[49]);
+
+console.log("Exercise 19.2 - Expect 0: ", game.items[1].quantity);
+console.log("Exercise 19.3 - Expect Diglet: ", game.collection[5].name);
+
+// One too many diglets... ;(
+catchPokemon(pokemon[51]);
+
+/*
+Exercise 20
+Copy the `catchPokemon` method that you just wrote above, and paste it below. Modify is so that you can just pass in the name of a Pokemon instead of an entire object, and the method will look up the Pokemon from the data set for you.
+
+The string passed in should be allowed to be any case (for example, if the string 'PiKacHU' is passed to the function, it should match to 'Pikachu' in the data set). 
+
+If there is not a match, then return a string noting that the selected Pokemon does not exist. Ensure you do not decrement the pokeball count if an invalid Pokemon name is passed in, and also ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+Solve Exercise 20 here:
+*/
+
+function catchPokemon(newPokemon) {
+  // check if there are enough pokeballs
+  if (game.items[1].quantity <= 0) {
+    console.log("There are not enough pokeballs to catch the desired Pokemon");
+  }
+  // catch pokemon and sort it
+  else {
+    // Ex 20 (checking if arg is a string and checking if in pokemon data.js)
+    // Check variable to stop for loop when pokemon is found and also if newpokemon is not in pokemon list
+    let check = false;
+    if (typeof newPokemon === 'string') {
+      for (let i = 0; i < pokemon.length && check != true; i++) {
+         if (newPokemon.toLowerCase() === pokemon[i].name.toLowerCase()) {
+           if (game.party.length < 6) {
+             game.party.push(pokemon[i]);
+           }
+           else {
+             game.collection.push(pokemon[i]);
+           }
+           check = true;
+         }
+      }
+      if (!check) {
+        return "Selected Pokemon does not exist";
+      }
+    }
+    // regular call of function
+    else {
+      if (game.party.length < 6) {
+        game.party.push(newPokemon);
+      }
+      else {
+        game.collection.push(newPokemon);
+      }
+    }
+    game.items[1].quantity--;
+  }
+}
+
+
+// adding pokeballs for ex 20 testing
+game.items[1].quantity = 3;
+
+console.log("Exercise 20.1 - Expect 3: ", game.items[1].quantity);
+
+// catch pikachu with random uppercase
+catchPokemon("piKAchU");
+
+console.log("Exercise 20.2 - Expect Pikachu: ", game.collection[6].name);
+console.log("Exercise 20.3 - Expect Selected Pokemon does not exist: ", catchPokemon("mewTHREE"));
+console.log("Exercise 20.4 - Expect 2: ", game.items[1].quantity);
+
+
