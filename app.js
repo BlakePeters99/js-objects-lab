@@ -449,3 +449,93 @@ console.log("Exercise 20.3 - Expect Selected Pokemon does not exist: ", catchPok
 console.log("Exercise 20.4 - Expect 2: ", game.items[1].quantity);
 
 
+/*
+Exercise 21
+Dynamically construct an object with the existing `pokemon` data sorted by the different pokemon types. The object will have this structure:
+
+{
+  grass: [
+    { number: 1, name: 'Bulbasaur', type: 'grass', hp: 45, starter: true },
+    { number: 2, name: 'Ivysaur', type: 'grass', hp: 60, starter: false },
+    { number: 3, name: 'Venusaur', type: 'grass', hp: 80, starter: false },
+    * more grass type Pokemon objects...
+  ],
+  fire: [
+    { number: 4, name: 'Charmander', type: 'fire', hp: 39, starter: true },
+    * more fire type Pokemon objects...
+  ],
+  water: [
+    * water type Pokemon objects...
+  ],
+  * etc... until there is an array for every Pokemon type!
+}
+
+Log the object when it's constructed.
+
+Solve Exercise 21 here:
+*/
+
+// initialize the object with empty arrays
+const dynamicPokemon = {
+  grass: [],
+  water: [],
+  fire: [],
+  bug: [],
+  normal: [],
+  poison: [],
+  electric: [],
+  ground: [],
+  fairy: [],
+  psychic: [],
+  ice: [],
+  rock: [],
+  dragon: []
+}
+
+// use switch to sort by pokemon type
+for (let i = 0; i < pokemon.length; i++) {
+  switch (pokemon[i].type) {
+    case "grass":
+      dynamicPokemon.grass.push(pokemon[i])
+      break;
+    case "water":
+      dynamicPokemon.water.push(pokemon[i])
+      break;
+    case "fire":
+      dynamicPokemon.fire.push(pokemon[i])
+      break;
+    case "bug":
+      dynamicPokemon.bug.push(pokemon[i])
+      break;
+    case "normal":
+      dynamicPokemon.normal.push(pokemon[i])
+      break;
+    case "poison":
+      dynamicPokemon.poison.push(pokemon[i])
+      break;
+      case "electric":
+        dynamicPokemon.electric.push(pokemon[i])
+    break;
+    case "fairy":
+      dynamicPokemon.fairy.push(pokemon[i])
+      break;
+    case "psychic":
+      dynamicPokemon.psychic.push(pokemon[i])
+      break;
+    case "ice":
+      dynamicPokemon.ice.push(pokemon[i])
+      break;
+    case "rock":
+      dynamicPokemon.rock.push(pokemon[i])
+      break;
+    case "dragon":
+      dynamicPokemon.dragon.push(pokemon[i])
+      break;
+  }
+}
+
+console.log("Exercise 21: Commented out due to length cap on terminal. Uncomment to see results.")
+
+//! UNCOMMENT THIS TO SEE RESULT
+// Commented due to size in terminal
+//console.log("Exercise 21: ", dynamicPokemon);
