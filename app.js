@@ -280,3 +280,13 @@ for (let i = 0; i < game.gyms.length; i++) {
 
 console.log("Exercise 15.1 - Expect 7 true", game.gyms[6].difficulty, game.gyms[6].completed);
 console.log("Exercise 15.2 - Expect 8 false", game.gyms[7].difficulty, game.gyms[7].completed);
+
+/*
+Exercise 16
+1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
+
+Solve Exercise 16 here:
+*/
+
+console.log("Exercise 16 Game: ", game);
+
