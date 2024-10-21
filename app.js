@@ -85,8 +85,8 @@ for (let i = 0; i < game.gyms.length; i++) {
 }
 
 console.log("Exercise 6.1 - Expect 1 true", game.gyms[0].difficulty, game.gyms[0].completed);
-console.log("Exercise 6.1 - Expect 2 true", game.gyms[1].difficulty, game.gyms[1].completed);
-console.log("Exercise 6.1 - Expect 3 false", game.gyms[2].difficulty, game.gyms[2].completed);
+console.log("Exercise 6.2 - Expect 2 true", game.gyms[1].difficulty, game.gyms[1].completed);
+console.log("Exercise 6.3 - Expect 3 false", game.gyms[2].difficulty, game.gyms[2].completed);
 
 /*
 Exercise 7
@@ -133,3 +133,72 @@ for (let i = 0; i < pokemon.length; i++) {
     console.log(`Exercise 9.${exerciseIncr++} - Starter: ${pokemon[i].name}`);
   }
 }
+
+/*
+Exercise 10
+Create a method called `catchPokemon` and add it to the `game` object. You should not need to edit the original game object directly. This method should:
+  - Accept an object as a parameter called `pokemonObj`
+  - Add the `pokemonObj` to the `game.party` array.
+  - not return anything
+
+After writing this method, call it and pass in a Pokemon object of your choice from the `pokemon` data to catch it.
+
+Solve Exercise 10 here:
+*/
+
+function catchPokemon(newPokemon) {
+  game.party.push(newPokemon);
+}
+
+console.log("Exercise 10.1 - Expect undefined: ", game.party[4]);
+
+catchPokemon(pokemon[99]);
+
+console.log("Exercise 10.2 - Expect Voltorb: ", game.party[4].name);
+
+/*
+Exercise 11
+1. Copy the `catchPokemon` method that you just wrote above, and paste it below. Modify it so that it also decreases the number of pokeballs in your inventory each time you catch a Pokémon.
+2. How will you find and update the quantity of pokeballs in the `game.items` array?
+
+Tips:
+For this exercise, it's okay to have a negative number of pokeballs.
+After updating the method, call it and pass in a Pokemon object of your choice from the `pokemon` data to catch it.
+Also, log the `game.items` array to confirm that the pokeball quantity is being decremented.
+
+Solve Exercise 11 here:
+*/
+
+console.log("Exercise 11.1 - Expect 7:", game.items[1].quantity);
+
+
+function catchPokemon(newPokemon) {
+  game.party.push(newPokemon);
+  game.items[1].quantity--;
+}
+
+catchPokemon(pokemon[150]);
+
+console.log("Exercise 11.2 - Expect 6: ", game.items[1].quantity);
+console.log("Exercise 11.3 - Expect Mew: ", game.party[5].name);
+
+/*
+Exercise 12
+1. Similar to Exercise 6, now complete gyms with a difficulty below 6. How will you approach this?
+ (change the value of `complete` in the qualifying objects from false to true).
+
+Solve Exercise 12 here:
+*/
+
+// iterate through gym array in game
+for (let i = 0; i < game.gyms.length; i++) {
+  // setting gymn completed to true for difficulty less than 3
+  if (game.gyms[i].difficulty < 6) {
+    game.gyms[i].completed = true;
+  }
+}
+
+console.log("Exercise 12.1 - Expect 4 true", game.gyms[3].difficulty, game.gyms[3].completed);
+console.log("Exercise 12.2 - Expect 5 true", game.gyms[4].difficulty, game.gyms[4].completed);
+console.log("Exercise 12.3 - Expect 6 false", game.gyms[5].difficulty, game.gyms[5].completed);
+
