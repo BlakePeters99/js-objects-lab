@@ -61,4 +61,11 @@ Solve Exercise 5 here:
 
 // added pikachu to party
 game.party.push(pokemon[24]);
+// added Nidoran♀ to party
+game.party.push(pokemon[28]);
+// added Clefairy to party
+game.party.push(pokemon[34]);
 
+console.log("Exercise 4.1 - Expect Pikachu: ", game.party[1].name);
+console.log("Exercise 4.2 - Expect Nidoran♀: ", game.party[2].name);
+console.log("Exercise 4.3 - Expect Clefairy: ", game.party[3].name);
